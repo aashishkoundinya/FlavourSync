@@ -1,0 +1,168 @@
+html {
+    transition: all 0.3s ease-in-out;
+    font-family: 'Titillium Web', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: #F7F7F8;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 40vw;
+    margin: 0 auto;
+    
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 1rem;
+}
+
+.heading {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+#instructions, #description {
+    max-width: 40vw;
+    min-width: 40vw;
+    max-height: 15vh;
+    min-height: 5vh;
+    border-radius: 15px;
+}
+
+#recipeTitle {
+    border-radius: 15px;
+}
+
+#recipeForm {
+    font-size: 1.5rem;
+}
+
+#recipeTitle, #instructions, #description {
+    font-size: 1.2rem;
+    border: 2px solid black;
+}
+
+.topnav {
+    background-color: #3795BD;
+    overflow: hidden;
+    height: 5rem;
+    font-size: 4rem;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 2.5rem;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .topnav a:hover {
+    background-color:#4E31AA;
+    color: white;
+    transition: 0.3s ease-in-out;
+    position: relative;
+  }
+
+#ingredientsContainer {
+    margin-bottom: 1rem;
+}
+
+
+.ingredient {
+    display: flex;
+    align-items: center;
+    max-width: 40vw;
+    cursor: default;
+    transition: transform 0.3s ease;
+}
+
+.dragging {
+    opacity: 0.8;
+    transform: scale(1.05);
+    background-color: #f9f9f9;
+}
+
+.drag-handle {
+    cursor: move;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+#addIngredient, #submitRecipe {
+    background-color: #4E31AA;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+#addIngredient:hover, #submitRecipe:hover {
+    background-color: #3A1078;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.ingredient input, .ingredient select {
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.ingredient button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.ingredient button:hover {
+    background-color: #ff0000;
+    transition: 0.3s ease-in-out;
+}
+
+.ingredient input {
+    border-radius: 10px;
+    font-size: 1rem;
+    border: 2px solid black;
+}
+
+.ingredient select {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 2rem;
+}
+
+#buttons {
+    margin-bottom: 5rem;
+}
