@@ -1,0 +1,16 @@
+.details {
+    text-align: start;
+    align-items: center;
+    max-width: 50vw;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+}
+
+.details h2 {
+    font-size: 2rem;
+}
+
+.details p, .details li {
+    font-size: 1.2rem;
+}
