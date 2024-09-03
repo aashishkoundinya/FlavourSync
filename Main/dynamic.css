@@ -1,0 +1,45 @@
+@media screen and (max-width: 568px) {
+    .topnav, .topnav img {
+        height: 4rem;
+    }
+
+    .topnav a {
+        font-size: 1.5rem;
+    }
+    
+    #recipeForm, #instructions, #description {
+        max-width: 75vw;
+        min-width: 75vw;
+    }
+
+    .heading {
+        font-size: 1rem;
+    }
+
+    #recipeTitle, #instructions, #description {
+        font-size: 1rem;
+    }
+
+    .ingredient input {
+        font-size: 0.5rem;
+        width: 3rem;
+    }
+
+    .ingredient select {
+        width: 3rem;
+        height: 2rem;
+    }
+
+    .ingredient button {
+        width: 3rem;
+        font-size: 0.5rem;
+    }
+
+    .recipe-menu {
+        max-width: 90vw;
+    }
+
+    .details {
+        max-width: 70vw;
+    }
+}
