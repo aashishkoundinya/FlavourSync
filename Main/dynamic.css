@@ -13,7 +13,11 @@
     }
 
     .heading {
-        font-size: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .heading-main {
+        font-size: 1.2rem;
     }
 
     #recipeTitle, #instructions, #description {
@@ -37,6 +41,20 @@
 
     .recipe-menu {
         max-width: 90vw;
+    }
+
+    .item {
+        width: 30vw;
+        height: 30vh;
+    }
+
+    .item p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space: normal;
     }
 
     .details {

@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nameInput.style.maxWidth = '20rem';
 
         const measurementSelect = document.createElement('select');
+        measurementSelect.style.maxWidth = "7rem"
         const options = ['Grams (g)', 'Milliliter (ml)', 'Table Spoon (Tbsp)', 'Tea Spoon (Tsp)', 'Custom'];
         options.forEach(option => {
             const opt = document.createElement('option');
@@ -36,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         valueInput.required = true;
         valueInput.style.maxWidth = '6rem';
 
-        const notes = document.createElement('input');
-        notes.type = 'text';
-        notes.placeholder = 'Notes';
-        notes.required = false;
-        notes.style.maxWidth = '6rem';
+        const notesInput = document.createElement('input');
+        notesInput.type = 'text';
+        notesInput.placeholder = 'Notes';
+        notesInput.required = false;
+        notesInput.style.maxWidth = '8rem';
 
         const removeButton = document.createElement('button');
         removeButton.type = 'button';
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientDiv.appendChild(nameInput);
         ingredientDiv.appendChild(measurementSelect);
         ingredientDiv.appendChild(valueInput);
-        ingredientDiv.appendChild(notes)
+        ingredientDiv.appendChild(notesInput)
         ingredientDiv.appendChild(removeButton);
 
         ingredientsContainer.appendChild(ingredientDiv);

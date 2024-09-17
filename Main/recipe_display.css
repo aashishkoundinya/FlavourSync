@@ -29,3 +29,25 @@
     text-decoration: none;
     color: black;
 }
+
+.search-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#searchBar {
+    padding: 0.5rem;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.item {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem;
+    width: 15vw;
+    max-height: 30vh;
+    align-items: center;
+    overflow: hidden;
+}
