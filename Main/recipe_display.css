@@ -30,15 +30,14 @@
     color: black;
 }
 
-.search-container {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-#searchBar {
-    padding: 0.5rem;
-    width: 80%;
+.search-container input {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 10px;
     font-size: 1rem;
+    max-width: 30vw;
+    margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .item {
