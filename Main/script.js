@@ -101,9 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function submitRecipe(event) {
         event.preventDefault();
         const recipeTitle = document.getElementById('recipeTitle').value.trim();
+        const description = document.getElementById('description').value.trim();
         const instructions = document.getElementById('instructions').value.trim();
 
-        if (!recipeTitle || !instructions) {
+        if (!recipeTitle || !instructions || !description) {
             alert('Please fill in all the fields.');
             return;
         }
@@ -121,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const recipe = {
             title: recipeTitle,
+            description: description,
             instructions: instructions,
             ingredients: ingredients
         };
