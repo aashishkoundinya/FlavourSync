@@ -29,6 +29,7 @@ This Recipe Sharing Platform is a web application that allows users to create, s
 
 ## Local JSON Storage
 - Recipes are stored in a local `.json` file, where each recipe is saved as an object with the following properties:
+
   ```json
   {
       "title": "Pizza",
