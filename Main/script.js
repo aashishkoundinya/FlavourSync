@@ -132,4 +132,32 @@ document.addEventListener('DOMContentLoaded', () => {
         recipeForm.reset();
         ingredientsContainer.innerHTML = '';
     }
+
+    //dark mode toggle
+    const inputEl = document.querySelector(".input");
+
+    const bodyEl = document.querySelector("body");
+    const headingEl = document.querySelector(".heading");
+
+    inputEl.checked = JSON.parse(localStorage.getItem("mode"));
+
+    updateBody();
+
+    function updateBody() {
+        if (inputEl.checked) {
+            bodyEl.style.background = "#111111";
+            headingEl.style.color = "#F7F7F8";
+        } else {
+            bodyEl.style.background = "#F7F7F8"
+        }
+    }
+
+    inputEl.addEventListener("input", () => {
+    updateBody();
+    updateLocalStorage();
+    });
+
+    function updateLocalStorage() {
+        localStorage.setItem("mode", JSON.stringify(inputEl.checked));
+    }
 });
