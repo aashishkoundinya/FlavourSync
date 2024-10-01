@@ -46,4 +46,4 @@ This Recipe Sharing Platform is a web application that allows users to create, s
 **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/NoSQL-Website-Project
+   git clone https://github.com/<your-username>/Recipe-Sharing-Platform

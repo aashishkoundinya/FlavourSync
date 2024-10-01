@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientsContainer.appendChild(ingredientDiv);
 
         // Add drag event listeners
-        ingredientDiv.addEventListener('dragstart', (e) => {
+        ingredientDiv.addEventListener('dragstart', () => {
             ingredientDiv.classList.add('dragging');
             setTimeout(() => {
                 ingredientDiv.style.display = 'none';
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Dragable ingredients to rearrange it
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll('.ingredient:not(.dragging)')];
 
@@ -127,13 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredients: ingredients
         };
 
+        // Store data in .json file
         localStorage.setItem(recipeTitle, JSON.stringify(recipe));
         alert('Recipe submitted successfully!');
         recipeForm.reset();
         ingredientsContainer.innerHTML = '';
     }
 
-    //dark mode toggle
+    // Dark mode toggle
     const inputEl = document.querySelector(".input");
 
     const bodyEl = document.querySelector("body");

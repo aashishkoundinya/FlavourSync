@@ -3,6 +3,16 @@
         width: 20vw;
     }
 
+    .item p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
     .recipe-menu {
         max-width: 90vw;
     }
@@ -21,6 +31,21 @@
         overflow: hidden; 
         text-overflow: ellipsis;
         white-space: normal;
+    }
+
+    .ingredient input {
+        font-size: 0.8rem;
+        width: 3rem;
+    }
+
+    .ingredient select {
+        width: 4rem;
+        height: 2rem;
+    }
+
+    .ingredient button {
+        width: 5rem;
+        font-size: 0.5rem;
     }
 }
 
