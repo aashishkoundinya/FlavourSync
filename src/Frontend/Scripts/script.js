@@ -128,11 +128,33 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredients: ingredients
         };
 
-        // Store data in .json file
-        localStorage.setItem(recipeTitle, JSON.stringify(recipe));
-        alert('Recipe submitted successfully!');
-        recipeForm.reset();
-        ingredientsContainer.innerHTML = '';
+        // // Store data in .json file
+        // localStorage.setItem(recipeTitle, JSON.stringify(recipe));
+        // alert('Recipe submitted successfully!');
+        // recipeForm.reset();
+        // ingredientsContainer.innerHTML = '';
+
+        fetch('http://localhost:3000/submit-recipe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(recipe),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert('Recipe submitted successfully!');
+                    recipeForm.reset();
+                    ingredientsContainer.innerHTML = '';
+                } else {
+                    alert('Error submitting recipe');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error submitting recipe');
+            });
     }
 
     // Dark mode toggle
