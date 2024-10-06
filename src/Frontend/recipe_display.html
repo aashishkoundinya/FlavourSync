@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Recipes</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../Frontend/recipe_display.css">
-    <link rel="stylesheet" href="../Frontend/dynamic.css">
+    <link rel="stylesheet" href="recipe_display.css">
+    <link rel="stylesheet" href="dynamic.css">
     <link rel="icon" href="logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +29,8 @@
     </div>
     <script src="../Frontend/Scripts/search-filter.js"></script>
 
-    <div class="recipe-menu">
-        <div class="card">
+    <div class="recipe-menu" id="recipeMenu">
+        <!-- <div class="card">
             <a href="../Frontend/Recipes/soup.html">
                 <div class="item">
                     <h1>Soup</h1>
@@ -91,7 +91,41 @@
                     <p>A versatile Italian dish featuring cooked noodles served with a variety of sauces, meats, or vegetables for a hearty meal.</p>
                 </div>
             </a>
-        </div>
+        </div> -->
+        <!-- <script>
+            async function fetchRecipes() {
+            try {
+                const response = await fetch('/api/recipes'); // Adjusted endpoint
+                const recipes = await response.json();
+                displayRecipes(recipes);
+            } catch (error) {
+                console.error('Error fetching recipes:', error);
+            }
+        }
+
+        // Display recipes in the container
+        function displayRecipes(recipes) {
+            const recipeMenu = document.getElementById('recipeMenu');
+            recipeMenu.innerHTML = ''; // Clear existing recipes
+
+            recipes.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <a href="recipe-detail.html?id=${recipe._id}">
+                        <div class="item">
+                            <h1>${recipe.title}</h1>
+                            <p>${recipe.description}</p>
+                        </div>
+                    </a>
+                `;
+                recipeMenu.appendChild(card);
+            });
+        }
+
+        // Call the function to fetch recipes on page load
+        window.onload = fetchRecipes();
+        </script> -->
     </div>
 
     <script src="../Frontend/Scripts/recipe_display.js"></script>

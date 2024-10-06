@@ -9,7 +9,6 @@ const recipeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // Add any other fields you want here (e.g., ingredients, instructions, etc.)
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
