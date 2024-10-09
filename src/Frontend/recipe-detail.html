@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="topnav">
+        <img src="logo.jpg">
+        <a href="index.html" href="#">Home</a>
+        <a href="recipe_display.html">My Recipes</a>
+    </div>
+
+    <div class="recipe-details" id="recipeDetails"></div>
+
+    <script>
+        // Function to get the recipe ID from the URL
+        function getRecipeIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // Function to fetch and display the recipe details
+        async function fetchRecipeDetails() {
+            const recipeId = getRecipeIdFromURL();
+            if (!recipeId) {
+                document.getElementById('recipeDetails').innerHTML = '<p>Recipe not found.</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/recipes/${recipeId}`);
+                const recipe = await response.json();
+
+                if (recipe) {
+                    displayRecipeDetails(recipe);
+                } else {
+                    document.getElementById('recipeDetails').innerHTML = '<p>Recipe not found.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching recipe details:', error);
+                document.getElementById('recipeDetails').innerHTML = '<p>Error fetching recipe details.</p>';
+            }
+        }
+
+        // Function to display recipe details
+        function displayRecipeDetails(recipe) {
+            const recipeDetails = document.getElementById('recipeDetails');
+            recipeDetails.innerHTML = `
+                <h1>${recipe.title}</h1>
+                <p>${recipe.description}</p>
+                <h3>Ingredients:</h3>
+                <ul>
+                    ${recipe.ingredients.map(ingredient => `
+                        <li>${ingredient.name} - ${ingredient.value} ${ingredient.measurement} (${ingredient.note || ''})</li>
+                    `).join('')}
+                </ul>
+                <h3>Instructions:</h3>
+                <p>${recipe.instructions}</p>
+            `;
+        }
+
+        // Call the function to fetch recipe details when the page loads
+        document.addEventListener('DOMContentLoaded', fetchRecipeDetails);
+    </script>
+</body>
+</html>

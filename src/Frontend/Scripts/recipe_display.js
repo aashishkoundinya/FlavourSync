@@ -1,10 +1,17 @@
-console.log('recipe_display.js loaded successfully');
-
 async function fetchRecipes() {
     try {
-        const response = await fetch('http://localhost:3000/api/recipes');
-        const recipes = await response.json();
-        displayRecipes(recipes);
+        const response = await fetch('/api/recipes');
+        const data = await response.json();
+
+        console.log('Raw API response:', data);
+
+        if (data && Array.isArray(data)) {
+            displayRecipes(data);
+        } else if (data && data.data && Array.isArray(data.data)) {
+            displayRecipes(data.data);
+        } else {
+            console.error('Invalid data format received:', data);
+        }
     } catch (error) {
         console.error('Error fetching recipes:', error);
     }
@@ -12,6 +19,12 @@ async function fetchRecipes() {
 
 function displayRecipes(recipes) {
     const recipeMenu = document.getElementById('recipeMenu');
+
+    if (!recipeMenu) {
+        console.error('recipeMenu element not found');
+        return;
+    }
+
     recipeMenu.innerHTML = '';
 
     recipes.forEach(recipe => {
@@ -20,13 +33,12 @@ function displayRecipes(recipes) {
         card.innerHTML = `
             <a href="recipe-detail.html?id=${recipe._id}">
                 <div class="item">
-                    <h1>${recipe.title}</h1>
-                    <p>${recipe.description}</p>
+                    <h1>${recipe.title || 'Untitled Recipe'}</h1>
+                    <p>${recipe.description || 'No description available'}</p>
                 </div>
             </a>
         `;
         recipeMenu.appendChild(card);
     });
 }
-
-window.onload = fetchRecipes();
+document.addEventListener('DOMContentLoaded', fetchRecipes);

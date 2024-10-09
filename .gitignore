@@ -1,3 +1,4 @@
 /Dark Mode
 /node_modules
-/*.json
+*.json
+/src/Frontend/Recipes/

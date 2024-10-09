@@ -13,12 +13,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../Frontend')));
-// app.use(express.static(path1.join(__dirname, '../src/Frontend/Scripts/recipe_display.js')));
-
-app.get('/Scripts/recipe_display.js', (req, res) => {
-    res.setHeader('Content-Type', 'application/javascript');
-    res.sendFile(path1.join(__dirname, 'Frontend/Scripts/recipe_display.js'));
-});
 
 mongoose.connect('mongodb://localhost:27017/recipes', {
     useNewUrlParser: true,
