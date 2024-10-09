@@ -2,7 +2,7 @@ console.log('recipe_display.js loaded successfully');
 
 async function fetchRecipes() {
     try {
-        const response = await fetch('/api/recipes');
+        const response = await fetch('http://localhost:3000/api/recipes');
         const recipes = await response.json();
         displayRecipes(recipes);
     } catch (error) {
@@ -29,4 +29,4 @@ function displayRecipes(recipes) {
     });
 }
 
-window.onload = fetchRecipes;
+window.onload = fetchRecipes();
