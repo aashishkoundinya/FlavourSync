@@ -14,9 +14,12 @@
     border: 2px solid black;
     border-radius: 10px;
     padding: 1rem;
+    margin: 0.5rem;
     width: 15vw;
+    min-height: 30vh;
     max-height: 30vh;
     align-items: center;
+    overflow: hidden;
 }
 
 .item p {
@@ -48,16 +51,4 @@
     max-width: 30vw;
     margin: 0 auto;
     margin-bottom: 2rem;
-}
-
-.item {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 0.5rem;
-    width: 15vw;
-    min-height: 20vh;
-    max-height: 30vh;
-    align-items: center;
-    overflow: hidden;
 }

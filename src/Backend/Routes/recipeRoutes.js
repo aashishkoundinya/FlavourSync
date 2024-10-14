@@ -1,5 +1,5 @@
 const express = require('express');
-const Recipe = require('../Models/recipeModel'); // Import the Recipe model
+const Recipe = require('../Models/recipeModel');
 
 const router = express.Router();
 
@@ -21,6 +21,20 @@ router.post('/submit-recipe', async (req, res) => {
         res.status(201).json({ message: 'Recipe saved successfully!' });
     } catch (error) {
         res.status(500).json({ error: 'Error saving recipe' });
+    }
+});
+
+// Route to fetch a specific recipe by ID
+router.get('/api/recipes/:id', async (req, res) => {
+    try {
+        const recipe = await Recipe.findById(req.params.id);
+        if (recipe) {
+            res.json(recipe);
+        } else {
+            res.status(404).json({ error: 'Recipe not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching recipe details' });
     }
 });
 
