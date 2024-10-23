@@ -1,26 +1,45 @@
 const express = require('express');
 const Recipe = require('../Models/recipeModel');
+const authenticate = require('../Middleware/authMiddleware');
 
 const router = express.Router();
 
 // Route to handle recipe form submissions
-router.post('/submit-recipe', async (req, res) => {
+router.post('/submit-recipe', authenticate, async (req, res) => {
+    console.log('Received request to /submit-recipe');
+    console.log('\nUser ID from Token: ', req.userId);
+    
     const { title, description, instructions, ingredients } = req.body;
-
-    console.log('Recipe Submitted: ', req.body);
 
     const newRecipe = new Recipe({
         title,
         description,
         instructions,
         ingredients,
+        userId: req.userId,
     });
 
     try {
+        console.log('Attempting to save recipe:', newRecipe);
         await newRecipe.save();
-        res.status(201).json({ message: 'Recipe saved successfully!' });
+        console.log('Recipe saved successfully');
+        return res.status(201).json({ message: 'Recipe saved successfully!' });
     } catch (error) {
-        res.status(500).json({ error: 'Error saving recipe' });
+        console.log('Error saving recipe: ', error);
+        return res.status(500).json({ error: 'Error saving recipe', details: error.message });
+    }
+});
+
+// Route to fetch all recipes for the logged-in user
+router.get('/my-recipes', authenticate, async (req, res) => {
+    const userId = req.userId; // Extract userId from middleware
+
+    try {
+        const recipes = await Recipe.find({ userId });
+        return res.json(recipes);
+    } catch (error) {
+        console.error('Error fetching recipes:', error);
+        return res.status(500).json({ error: 'Error fetching recipes' });
     }
 });
 

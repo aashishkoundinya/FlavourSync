@@ -33,6 +33,10 @@ input, textarea {
     margin-top: 1rem;
 }
 
+#authButton {
+    float: right;
+}
+
 .heading {
     margin-top: 2rem;
     font-size: 1.5rem;
@@ -50,7 +54,7 @@ input, textarea {
     border-radius: 15px;
 }
 
-#recipeTitle {
+#recipeTitle, #email, #password, #registerEmail, #registerPassword {
     border-radius: 15px;
 }
 
@@ -58,7 +62,7 @@ input, textarea {
     font-size: 1.5rem;
 }
 
-#recipeTitle, #instructions, #description {
+#recipeTitle, #instructions, #description, #email, #password, #registerEmail, #registerPassword {
     font-size: 1.2rem;
     border: 2px solid black;
 }
@@ -94,6 +98,10 @@ input, textarea {
     cursor:pointer;
 }
 
+#loginForm, #registerForm {
+    max-width: 30vw;
+}
+
 #ingredientsContainer {
     margin-bottom: 1rem;
 }
@@ -120,7 +128,7 @@ input, textarea {
     user-select: none;
 }
 
-#addIngredient, #submitRecipe {
+#addIngredient, #submitRecipe, #loginBtn, #registerBtn {
     background-color: #4E31AA;
     color: white;
     border: none;
@@ -128,6 +136,21 @@ input, textarea {
     padding: 1rem;
     border-radius: 20px;
     transition: 0.3s ease-in-out;
+}
+
+#loginBtn, #registerBtn {
+    width: 6rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+#toRegister {
+    float: right;
+    margin-top: 2rem;
+}
+
+#registerBtn {
+    margin-bottom: 2rem;
 }
 
 #submitRecipe {

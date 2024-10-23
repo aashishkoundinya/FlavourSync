@@ -1,3 +1,13 @@
+async function tokenAlert() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please log in to submit recipes.');
+        window.location.href = '/login.html'; 
+        return;
+    }
+}
+document.addEventListener('DOMContentLoaded', tokenAlert);
+
 document.addEventListener('DOMContentLoaded', () => {
     const ingredientsContainer = document.getElementById('ingredientsContainer');
     const addIngredientButton = document.getElementById('addIngredient');
@@ -101,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function submitRecipe(event) {
         event.preventDefault();
+        console.log('Submitting recipe...');
+
         const recipeTitle = document.getElementById('recipeTitle').value.trim();
         const description = document.getElementById('description').value.trim();
         const instructions = document.getElementById('instructions').value.trim();
@@ -128,60 +140,46 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredients: ingredients
         };
 
-        // // Store data in .json file
-        // localStorage.setItem(recipeTitle, JSON.stringify(recipe));
-        // alert('Recipe submitted successfully!');
-        // recipeForm.reset();
-        // ingredientsContainer.innerHTML = '';
+        console.log('Recipe data:', recipe);
+
+        const token = localStorage.getItem('token');
+        console.log('Token: ', token);
 
         fetch('http://localhost:3000/submit-recipe', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(recipe),
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert('Recipe submitted successfully!');
-                    recipeForm.reset();
-                    ingredientsContainer.innerHTML = '';
-                } else {
-                    alert('Error submitting recipe');
+
+        .then(response => {
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+            return response.text().then(text => {
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.error('Error parsing JSON:', e);
+                    console.log('Raw response:', text);
+                    throw new Error('Invalid JSON response');
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error submitting recipe');
             });
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.message) {
+                alert('Recipe submitted successfully!');
+                recipeForm.reset();
+                ingredientsContainer.innerHTML = '';
+            } else {
+                alert('Error submitting recipe: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            alert('Error submitting recipe: ' + error.message);
+        });
     }
-
-    // Dark mode toggle
-    const inputEl = document.querySelector(".input");
-
-    const bodyEl = document.querySelector("body");
-    const headingEl = document.querySelector(".heading");
-
-    inputEl.checked = JSON.parse(localStorage.getItem("mode"));
-
-    updateBody();
-
-    function updateBody() {
-        if (inputEl.checked) {
-            bodyEl.style.background = "#111111";
-            headingEl.style.color = "#F7F7F8";
-        } else {
-            bodyEl.style.background = "#F7F7F8"
-        }
-    }
-
-    inputEl.addEventListener("input", () => {
-    updateBody();
-    updateLocalStorage();
-    });
-
-    function updateLocalStorage() {
-        localStorage.setItem("mode", JSON.stringify(inputEl.checked));
-    }
-});
+});    
