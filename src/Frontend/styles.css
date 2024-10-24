@@ -54,7 +54,7 @@ input, textarea {
     border-radius: 15px;
 }
 
-#recipeTitle, #email, #password, #registerEmail, #registerPassword {
+#recipeTitle, #email, #password, #registerEmail, #registerPassword, #confirmPassword {
     border-radius: 15px;
 }
 
@@ -62,7 +62,13 @@ input, textarea {
     font-size: 1.5rem;
 }
 
-#recipeTitle, #instructions, #description, #email, #password, #registerEmail, #registerPassword {
+.recipe-time {
+    font-size: 0.8rem;
+    color: black;
+    margin-top: 10px;
+}
+
+#recipeTitle, #instructions, #description, #email, #password, #registerEmail, #registerPassword, #confirmPassword {
     font-size: 1.2rem;
     border: 2px solid black;
 }

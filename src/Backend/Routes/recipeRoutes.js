@@ -35,7 +35,7 @@ router.get('/my-recipes', authenticate, async (req, res) => {
     const userId = req.userId; // Extract userId from middleware
 
     try {
-        const recipes = await Recipe.find({ userId });
+        const recipes = await Recipe.find({ userId }).sort({ createdAt: -1});
         return res.json(recipes);
     } catch (error) {
         console.error('Error fetching recipes:', error);

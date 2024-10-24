@@ -29,11 +29,17 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     e.preventDefault();
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password != confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
 
     const response = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, confirmPassword }),
     });
 
     const contentType = response.headers.get('content-type');
