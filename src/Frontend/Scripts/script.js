@@ -124,10 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const ingredients = [];
         document.querySelectorAll('.ingredient').forEach(ingredientDiv => {
-            const name = ingredientDiv.querySelector('input[type="text"]').value.trim();
+            const name = ingredientDiv.querySelector('input[placeholder="Ingredient Name"]').value.trim();
             const measurement = ingredientDiv.querySelector('select').value;
             const value = ingredientDiv.querySelector('input[type="number"]').value.trim();
-            const note = ingredientDiv.querySelector('input[type="text"]').value.trim();
+            const note = ingredientDiv.querySelector('input[placeholder="Notes"]').value.trim();
             if (name && value) {
                 ingredients.push({ name, measurement, value, note });
             }
