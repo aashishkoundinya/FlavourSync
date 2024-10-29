@@ -42,9 +42,10 @@ function addToChatLog(sender, message) {
 
 async function getChatbotResponse(question) {
     try {
+        const token = localStorage.getItem('token');
         const response = await fetch('http://localhost:3000/api/api/chatbot', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': token, },
             body: JSON.stringify({ question }),
         });
 

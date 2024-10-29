@@ -7,16 +7,14 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 router.post('/api/chatbot', async (req, res) => {
     const { question } = req.body;
-    const userId = req.userId;
 
     try {
-        console.log('User ID: ', userId);
-        const userRecipes = await Recipe.find({ userId });
+        const userRecipes = await Recipe.find({ user: req.userId });
 
         if (!userRecipes.length) {
             return res.json({ answer: 'You have no recipes saved. Please add some recipes to ask questions about.' });
         }
-
+        
         const recipeList = userRecipes.map(recipe => (
             `Recipe Title: ${recipe.title}\nDescription: ${recipe.description}\nIngredients: ${recipe.ingredients.map(i => i.name).join(', ')}\nInstructions: ${recipe.instructions}\n\n`
         )).join('\n');
@@ -29,6 +27,7 @@ router.post('/api/chatbot', async (req, res) => {
         const response = await model.generateContent([prompt]);
 
         console.log("Gemini Response: ", response);
+        console.log(req.userId);
 
         return res.json({ answer: response.response.text() });
     } catch (error) {
