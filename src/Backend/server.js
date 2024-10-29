@@ -6,6 +6,7 @@ const path = require('path');
 const recipeRoutes = require('../Backend/Routes/recipeRoutes');
 const Recipe = require('./Models/recipeModel')
 const authRoutes = require('../Backend/Routes/authenticationRoute');
+const chatRoute = require('../Backend/Routes/chatbotRoute');
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.use('/api', authRoutes);
 app.use('/api', recipeRoutes); 
+app.use('/api', chatRoute);
 
 app.use(cors());
 app.use(bodyParser.json());
