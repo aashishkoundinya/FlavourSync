@@ -24,34 +24,3 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         alert(`Unexpected response: ${text}`);
     }
 });
-
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-
-    if (password != confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-    }
-
-    const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, confirmPassword }),
-    });
-
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-        const responseData = await response.json();
-        if (response.ok) {
-            alert('Registration successful!');
-        } else {
-            alert(`Registration failed: ${responseData.error || 'Unknown error'}`);
-        }
-    } else {
-        const text = await response.text();
-        alert(`Unexpected response: ${text}`);
-    }
-});

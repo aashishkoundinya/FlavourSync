@@ -63,7 +63,7 @@ input, textarea {
     margin: 0 auto;
 }
 
-#recipeTitle, #email, #password, #registerEmail, #registerPassword, #confirmPassword, #user-input {
+#recipeTitle, #email, #password, #registerEmail, #registerPassword, #confirmPassword, #user-input, #otp {
     border-radius: 15px;
 }
 
@@ -77,7 +77,7 @@ input, textarea {
     margin-top: 10px;
 }
 
-#recipeTitle, #instructions, #description, #email, #password, #registerEmail, #registerPassword, #confirmPassword, #user-input {
+#recipeTitle, #instructions, #description, #email, #password, #registerEmail, #registerPassword, #confirmPassword, #user-input, #otp {
     font-size: 1.2rem;
     border: 2px solid black;
 }
@@ -113,7 +113,7 @@ input, textarea {
     cursor:pointer;
 }
 
-#loginForm, #registerForm {
+#loginForm, #registerForm, #otpForm {
     max-width: 30vw;
 }
 
@@ -143,7 +143,7 @@ input, textarea {
     user-select: none;
 }
 
-#addIngredient, #submitRecipe, #loginBtn, #registerBtn, #send-btn {
+#addIngredient, #submitRecipe, #loginBtn, #registerBtn, #send-btn, #verifyOtpBtn {
     background-color: #4E31AA;
     color: white;
     border: none;
@@ -153,10 +153,26 @@ input, textarea {
     transition: 0.3s ease-in-out;
 }
 
-#loginBtn, #registerBtn {
+#otp {
+    max-width: 15vw;
+    text-align: centre;
+}
+
+#otpForm {
+    margin: 0 auto;
+}
+
+#loginBtn, #registerBtn, #verifyOtpBtn {
     width: 6rem;
     margin-top: 2rem;
     cursor: pointer;
+}
+
+#verifyOtpBtn {
+    width: 10rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin: 0 auto;
 }
 
 #toRegister {
@@ -259,24 +275,4 @@ input, textarea {
 .input:checked+.label .circle {
     animation: toggleOn 0.4s linear forwards;
     background-color: black;
-}
-
-@keyframes toggleOn {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(30px);
-    }
-}
-
-@keyframes toggleOff {
-    0% {
-        transform: translateX(30px);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
 }
