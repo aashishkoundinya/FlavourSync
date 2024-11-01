@@ -4,43 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flavour Sync - Login</title>
-    <link rel="icon" href="../logo.jpg">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../Assets/logo.jpg">
+    <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="topnav">
-        <img src="../logo.jpg">
-        <a class="active" href="../index.html">Home</a>
-        <a href="../recipe_display.html">My Recipes</a>
+        <img src="../Assets/logo.jpg">
+        <a class="active" href="index.html">Home</a>
+        <a href="recipe_display.html">My Recipes</a>
     </div>
-
-    <!-- login.html -->
-    <div class="heading">
-        <h1>Login</h1>
-    </div>
-
-    <form id="loginForm">
-        <input type="email" id="email" placeholder="Email" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <button id="loginBtn" type="submit">Login</button>
-        <a href="register.html">Don't have an account?</a>
-    </form>
 
     <!-- register.html -->
-    <!-- <div class="heading">
-        <h1>Register</h1>
-    </div>
-
     <form id="registerForm">
+        <div class="heading">
+            <h1>Register</h1>
+        </div>
         <input type="email" id="registerEmail" placeholder="Email" required />
         <input type="password" id="registerPassword" placeholder="Password" required />
         <input type="password" id="confirmPassword" placeholder="Confirm Password" required/>
         <button id="registerBtn" type="submit">Register</button>
-    </form> -->
+        <a href="login.html">I have an account!!</a>
+    </form>
 
-    <script type="text/javascript" src="/Scripts/login.js"></script>
+    <form id="otpForm" style="display: none;">
+        <div class="heading">
+            <h1>Verify OTP</h1>
+        </div>
+        <input type="text" id="otp" placeholder="OTP" required />
+        <div>
+            <button id="verifyOtpBtn" type="submit">Verify OTP</button>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="/Scripts/register.js"></script>
 </body>
 </html>

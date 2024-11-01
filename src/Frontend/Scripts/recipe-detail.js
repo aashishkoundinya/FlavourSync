@@ -21,11 +21,11 @@ function displayRecipeDetails(recipe) {
     }
 
     recipeDetailsDiv.innerHTML = `
-        <div class="heading">
+        <div class="heading" id="recipe-name">
             <h1>${recipe.title || 'Untitled Recipe'}</h1>
         </div>
 
-        <div class="details">
+        <div class="details" id="recipe-content">
             <h2>Description:</h2>
             <p>${recipe.description || 'No description available'}</p>
             
@@ -37,6 +37,8 @@ function displayRecipeDetails(recipe) {
             <h2>Instructions:</h2>
             <p>${recipe.instructions.replace(/\n/g, '<br>')}</p>
         </div>
+
+        <button onclick="exportRecipeAsPDF()">Download as PDF</button>
     `;
 }
 

@@ -50,8 +50,8 @@ router.post('/register', async (req, res) => {
         to: email,
         subject: 'Welcome to Flavour Sync',
         attachments: [{
-            filename: 'Banner.png',
-            path: path.join(__dirname, '../../Frontend/Banner.png'),
+            filename: 'Welcome.png',
+            path: path.join(__dirname, '../../Frontend/Assets/Welcome.png'),
             cid: 'bannerImage'
         }],
         html: `

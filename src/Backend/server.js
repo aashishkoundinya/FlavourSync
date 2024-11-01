@@ -21,6 +21,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../Frontend')));
+app.use(express.static(path.join(__dirname, '../Frontend/HTML')));
+app.use('/CSS', express.static(path.join(__dirname, '../Frontend/CSS')));
+app.use('/Assets', express.static(path.join(__dirname, '../Frontend/Assets')));
+app.use('/Scripts', express.static(path.join(__dirname, '../Frontend/Scripts')));
+
 
 mongoose.connect('mongodb://localhost:27017/recipes', {
     useNewUrlParser: true,
