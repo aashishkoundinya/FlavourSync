@@ -29,7 +29,7 @@ const otpStore = {};
 
 // Register route
 router.post('/register', async (req, res) => {
-    const { email, password, confirmPassword } = req.body;
+    const { email, password, confirmPassword, username } = req.body;
 
     if (password != confirmPassword) {
         return res.status(400).json({ error: 'Passwords do not match' });
@@ -38,6 +38,11 @@ router.post('/register', async (req, res) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
         return res.status(400).json({ error: 'User already exists' });
+    }
+
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+        return res.status(400).json({error: 'Username is already taken'});
     }
 
     const otp = generateOTP();
@@ -79,7 +84,7 @@ router.post('/register', async (req, res) => {
 
 // OTP Verification
 router.post('/verify-otp', async (req, res) => {
-    const { email, otp, password } = req.body;
+    const { email, otp, password, username } = req.body;
 
     const storedOtpData = otpStore[email];
     if (!storedOtpData || storedOtpData.otp !== otp || storedOtpData.otpExpires < Date.now()) {
@@ -87,7 +92,7 @@ router.post('/verify-otp', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({ email, password: hashedPassword, username });
     
     try {
         await newUser.save();

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="stylesheet" href="../CSS/recipe_display.css">
     <link rel="stylesheet" href="../CSS/dynamic.css">
-    <link rel="icon" href="logo.jpg">
+    <link rel="icon" href="../Assets/logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
@@ -21,17 +21,27 @@
         <a id="authButton" href="login.html">Login</a>
     </div>
 
-    <div class="heading">
-        <h1>All Recipes</h1>
+    <div class="heading-recipe">
+        <h1>Recipes</h1>
+    </div>
+
+    <div class="toggle">
+        <label class="toggle-switch">
+            <input type="checkbox" id="recipeToggle" onchange="toggleRecipes()">
+            <span class="slider"></span>
+        </label>
+        <p>Only your recipes are shown by default. Toggle the switch to see all recipes!</p>
     </div>
 
     <div class="search-container">
         <input type="text" id="search-bar" placeholder="Search Recipes...." onkeyup="filterRecipes()">
-        <!-- <button id="clear-btn" onclick="clearSearch()">&#10006;</button> -->
     </div>
+
     <script src="/Scripts/search-filter.js" type="text/javascript"></script>
 
-    <div class="recipe-menu" id="recipeMenu"></div>
+    <div class="recipe-menu" id="recipeMenu">
+        <!-- Recipe cards are dynamically loaded here -->
+    </div>
 
     <script src="/Scripts/recipe_display.js" type="text/javascript"></script>
     <script src="/Scripts/authButton.js" type="text/javascript"></script>

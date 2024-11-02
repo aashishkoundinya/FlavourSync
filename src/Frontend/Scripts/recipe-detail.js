@@ -20,6 +20,10 @@ function displayRecipeDetails(recipe) {
         return;
     }
 
+    const date = new Date(Date.parse(recipe.createdAt));
+    const formattedDate = date.toLocaleDateString();
+    const formattedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+
     recipeDetailsDiv.innerHTML = `
         <div class="heading" id="recipe-name">
             <h1>${recipe.title || 'Untitled Recipe'}</h1>
@@ -36,6 +40,11 @@ function displayRecipeDetails(recipe) {
             
             <h2>Instructions:</h2>
             <p>${recipe.instructions.replace(/\n/g, '<br>')}</p>
+        </div>
+
+        <div class="meta-info" id="recipe-meta">
+            <p>Submitted by: <strong>${recipe.username ||  'Unknown User'}</strong></p>
+            <p>Submitted on: <strong>${formattedDate} at ${formattedTime}</strong></p>
         </div>
 
         <button onclick="exportRecipeAsPDF()">Download as PDF</button>

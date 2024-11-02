@@ -1,14 +1,17 @@
 let tempEmail;
 let tempPassword;
+let tempUsername;
 
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
+    const username = document.getElementById('username').value.toLowerCase().replace(/\s+/g, '');
 
     tempEmail = email;
     tempPassword = password;
+    tempUsername = username;
 
     if (password != confirmPassword) {
         alert("Passwords do not match!");
@@ -18,7 +21,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const response = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: tempEmail, password:tempPassword, confirmPassword }),
+        body: JSON.stringify({ email: tempEmail, password:tempPassword, confirmPassword, username }),
     });
 
     const responseData = await response.json();
@@ -39,7 +42,7 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
     const response = await fetch('/api/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password:tempPassword, email: tempEmail, otp }),
+        body: JSON.stringify({ password:tempPassword, email: tempEmail, username: tempUsername, otp }),
     });
 
     const responseData = await response.json();

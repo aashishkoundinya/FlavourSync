@@ -16,6 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/api', authRoutes);
 app.use('/api', recipeRoutes); 
 app.use('/api', chatRoute);
+app.use('/', recipeRoutes);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -33,19 +34,6 @@ mongoose.connect('mongodb://localhost:27017/recipes', {
 })
 .then(() => console.log('MongoDB connected'))
 .catch((error) => console.log('MongoDB connection error:', error));
-
-app.use('/', recipeRoutes);
-
-app.get('/api/recipes', async (req, res) => {
-    try {
-        const recipes = await Recipe.find();
-        console.log(recipes);
-        return res.json(recipes);
-    } catch (error) {
-        console.error('Error fetching recipes:', error);
-        return res.status(500).json({ error: 'An error occurred while fetching recipes.' });
-    }
-});
 
 // Start the server
 app.listen(3000, () => {

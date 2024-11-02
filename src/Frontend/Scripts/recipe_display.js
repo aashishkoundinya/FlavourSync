@@ -1,22 +1,37 @@
-async function fetchRecipes() {
+document.addEventListener('DOMContentLoaded', () => {
+    fetchRecipes()
+
+    const recipeToggle = document.getElementById('recipeToggle');
+    if (recipeToggle) {
+        recipeToggle.addEventListener('change', toggleRecipes);
+    } else {
+        console.error('Toggle switch element not found.');
+    }
+});
+
+function toggleRecipes() {
+    const allRecipes = document.getElementById('recipeToggle').checked;
+    fetchRecipes(allRecipes);
+}
+
+async function fetchRecipes(allRecipes = false) {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('Please log in to view your recipes.');
+        alert('Please log in to view recipes.');
         window.location.href = '/login.html';
         return;
     }
 
     try {
-        const response = await fetch('/my-recipes', {
+        const endpoint = allRecipes ? '/all-recipes' : '/my-recipes';
+        const response = await fetch(endpoint, {
             method: 'GET',
             headers: {
-                'Authorization': token,  // Send the token in the request headers
+                'Authorization': token,
                 'Content-Type': 'application/json'
             }
         });
         const data = await response.json();
-
-        console.log('Raw API response:', data);
 
         if (data && Array.isArray(data)) {
             displayRecipes(data);
@@ -57,4 +72,4 @@ function displayRecipes(recipes) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', fetchRecipes);
+document.addEventListener('DOMContentLoaded',() => fetchRecipes());
