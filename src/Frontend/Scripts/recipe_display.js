@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleRecipes() {
     const allRecipes = document.getElementById('recipeToggle').checked;
     fetchRecipes(allRecipes);
+
+    const toggle = document.getElementById("recipeToggle");
+    const heading = document.getElementById("recipeHeading");
+
+    if (toggle.checked) {
+        heading.textContent = "All Recipes";
+    } else {
+        heading.textContent = "My Recipes";
+    }
 }
 
 async function fetchRecipes(allRecipes = false) {

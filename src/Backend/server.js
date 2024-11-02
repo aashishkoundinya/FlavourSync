@@ -12,14 +12,13 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors());
+app.use(bodyParser.json())
 
 app.use('/api', authRoutes);
 app.use('/api', recipeRoutes); 
 app.use('/api', chatRoute);
-app.use('/', recipeRoutes);
-
-app.use(cors());
-app.use(bodyParser.json());
+app.use('/', recipeRoutes);;
 
 app.use(express.static(path.join(__dirname, '../Frontend')));
 app.use(express.static(path.join(__dirname, '../Frontend/HTML')));

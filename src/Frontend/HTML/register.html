@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flavour Sync - Login</title>
+    <title>Register - FlavourSync</title>
     <link rel="icon" href="../Assets/logo.jpg">
     <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,6 @@
         <a href="recipe_display.html">My Recipes</a>
     </div>
 
-    <!-- register.html -->
     <form id="registerForm">
         <div class="heading">
             <h1>Register</h1>
@@ -34,11 +33,19 @@
         <div class="heading">
             <h1>Verify OTP</h1>
         </div>
-        <input type="text" id="otp" placeholder="OTP" required />
-        <div>
+        <div id="otpInputs">
+            <input type="text" class="otpDigit" id="otp1" maxlength="1" oninput="moveToNext(this, 'otp2', null)" required>
+            <input type="text" class="otpDigit" id="otp2" maxlength="1" oninput="moveToNext(this, 'otp3', 'otp1')" required>
+            <input type="text" class="otpDigit" id="otp3" maxlength="1" oninput="moveToNext(this, 'otp4', 'otp2')" required>
+            <input type="text" class="otpDigit" id="otp4" maxlength="1" oninput="moveToNext(this, 'otp5', 'otp3')" required>
+            <input type="text" class="otpDigit" id="otp5" maxlength="1" oninput="moveToNext(this, 'otp6', 'otp4')" required>
+            <input type="text" class="otpDigit" id="otp6" maxlength="1" oninput="moveToNext(this, null, 'otp5')" required>
+        </div>
+        <div id="OtpBtn">
             <button id="verifyOtpBtn" type="submit">Verify OTP</button>
         </div>
     </form>
+    
 
     <script type="text/javascript" src="/Scripts/register.js"></script>
 </body>

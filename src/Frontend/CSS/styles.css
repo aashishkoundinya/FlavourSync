@@ -158,15 +158,6 @@ input, textarea {
     transition: 0.3s ease-in-out;
 }
 
-#otp {
-    max-width: 15vw;
-    text-align: centre;
-}
-
-#otpForm {
-    margin: 0 auto;
-}
-
 #loginBtn, #registerBtn, #verifyOtpBtn {
     width: 6rem;
     margin-top: 2rem;
@@ -174,9 +165,24 @@ input, textarea {
 }
 
 #verifyOtpBtn {
-    width: 10rem;
-    cursor: pointer;
-    margin-top: 2rem;
+    display: flex;
+    width: 8rem;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.otpDigit {
+    max-width: 2vw;
+    text-align: center;
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
+
+#otpInputs {
+    display: flex;
     margin: 0 auto;
 }
 
@@ -241,43 +247,4 @@ input, textarea {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
-
-.input {
-    visibility: hidden;
-}
-
-.label {
-    position: relative;
-    float: right;
-    display: flex;
-    width: 60px;
-    height: 30px;
-    background-color: black;
-    border-radius: 20px;
-    cursor: pointer;
-    top: 10px;
-    right: 20px;
-}
-
-.circle {
-    width: 20px;
-    background-color: #F7F7F8;
-    height: 20px;
-    border-radius: 50%;
-    top: 5px;
-    position: absolute;
-    left: 5px;
-    animation: toggleOff 0.4s linear forwards;
-    position: relative;
-    float: left;
-}
-
-.input:checked+.label {
-    background-color: #F7F7F8;
-}
-
-.input:checked+.label .circle {
-    animation: toggleOn 0.4s linear forwards;
-    background-color: black;
 }

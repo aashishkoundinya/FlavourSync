@@ -21,7 +21,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const response = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: tempEmail, password:tempPassword, confirmPassword, username }),
+        body: JSON.stringify({ email: tempEmail, password:tempPassword, confirmPassword, username: tempUsername }),
     });
 
     const responseData = await response.json();
@@ -37,7 +37,10 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
 // OTP Verification
 document.getElementById('otpForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const otp = document.getElementById('otp').value;
+    // const otp = document.getElementById('otp').value;
+    const otp = Array.from(document.querySelectorAll('#otpInputs input'))
+                .map(input => input.value)
+                .join('');
 
     const response = await fetch('/api/verify-otp', {
         method: 'POST',
@@ -52,4 +55,21 @@ document.getElementById('otpForm').addEventListener('submit', async (e) => {
     } else {
         alert(`OTP verification failed: ${responseData.error}`);
     }
+});
+
+function moveToNext(current, nextFieldId, prevFieldId) {
+    if (current.value.length === current.maxLength && nextFieldId) {
+        document.getElementById(nextFieldId).focus();
+    } else if (current.value.length === 0 && prevFieldId) {
+        document.getElementById(prevFieldId).focus();
+    }
+}
+
+document.querySelectorAll('.otpDigit').forEach((input) => {
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            document.getElementById('verifyOtpBtn').click();
+        }
+    });
 });
