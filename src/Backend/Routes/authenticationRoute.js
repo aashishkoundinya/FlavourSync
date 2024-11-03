@@ -121,4 +121,51 @@ router.post('/login', async (req, res) => {
     res.json({ token });
 });
 
+// Forgot Password Route - Send OTP
+router.post('/forgot-password', async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        return res.status(404).json({ error: 'No user found with this email' });
+    }
+
+    const otp = generateOTP();
+    const otpExpires = Date.now() + 5 * 60 * 1000; // OTP expires in 5 minutes
+    otpStore[email] = { otp, otpExpires };
+
+    const mailOptions = {
+        from: 'Flavour Sync <' + process.env.EMAIL_USER + '>',
+        to: email,
+        subject: 'Password Reset OTP',
+        html: `<p>Your OTP for password reset is <strong>${otp}</strong>.<strong>Do Not Share OTP with anyone!!</p>`,
+    };
+
+    transporter.sendMail(mailOptions, (error) => {
+        if (error) {
+            return res.status(500).json({ error: 'Error sending email' });
+        }
+        res.status(200).json({ message: 'OTP sent to your email' });
+    });
+});
+
+// Reset Password Route - Verify OTP and Update Password
+router.post('/reset-password', async (req, res) => {
+    const { otp, newPassword } = req.body;
+    const userEmail = Object.keys(otpStore).find(email => otpStore[email].otp === otp);
+
+    if (!userEmail || otpStore[userEmail].otpExpires < Date.now()) {
+        return res.status(400).json({ error: 'Invalid or expired OTP' });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    try {
+        await User.updateOne({ email: userEmail }, { password: hashedPassword });
+        delete otpStore[userEmail];
+        res.status(200).json({ message: 'Password reset successful' });
+    } catch (error) {
+        res.status(500).json({ error: 'Error resetting password' });
+    }
+});
+
 module.exports = router;
