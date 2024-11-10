@@ -14,10 +14,24 @@ router.post('/api/chatbot', async (req, res) => {
         if (!userRecipes.length) {
             return res.json({ answer: 'You have no recipes saved. Please add some recipes to ask questions about.' });
         }
+
+        const recipeList = userRecipes.map(recipe => {
+            const date = new Date(Date.parse(recipe.createdAt));
+            const formattedDate = date.toLocaleDateString();
         
-        const recipeList = userRecipes.map(recipe => (
-            `Recipe Title: ${recipe.title}\nDescription: ${recipe.description}\nIngredients: ${recipe.ingredients.map(i => i.name).join(', ')}\nInstructions: ${recipe.instructions}\n\n`
-        )).join('\n');
+            const ingredientsDetails = recipe.ingredients.map(ingredient => (
+                `${ingredient.value || 'N/A'} ${ingredient.measurement || ''} of ${ingredient.name} - ${ingredient.note || 'No notes'}`
+            )).join(', ');
+        
+            return `
+                Recipe Title: ${recipe.title}
+                Description: ${recipe.description}
+                Ingredients: ${ingredientsDetails}
+                Instructions: ${recipe.instructions}
+                Submission Date: ${formattedDate}
+                Submitted By: ${recipe.username}
+            `;
+        }).join('\n');        
 
         const prompt = `
             You are a helpful cooking chatbot. Here is a list of recipes available to the user:\n${recipeList}\nUser Question: ${question}\nRespond with relevant advice or details from the recipes where appropriate.

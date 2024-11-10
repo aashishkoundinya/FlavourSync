@@ -166,6 +166,10 @@ input, textarea {
     cursor: pointer;
 }
 
+#OtpBtn {
+    margin-top: 1rem;
+}
+
 #resetPasswordBtn {
     width: 10rem;
     cursor: pointer;
