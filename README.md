@@ -90,4 +90,4 @@ Last run on these versions
 **Clone the repository:**
 
    ```bash
-   git clone https://github.com/<your-username>/Recipe-Sharing-Platform
+   git clone https://github.com/<your-username>/FlavourSync
