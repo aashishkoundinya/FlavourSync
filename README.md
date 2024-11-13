@@ -1,12 +1,15 @@
 # Recipe Sharing Platform
 
 ## Overview
-This Recipe Sharing Platform is a web application that allows users to create, store, and display recipes. Users can add recipes by providing a title, description, ingredients, and instructions, which are saved locally in a `.json` file. The website features a **My Recipes** section where all submitted recipes are displayed, and a **search bar** to filter through recipes in real-time.
+This Recipe Sharing Platform is a web application that allows users to create, store, and display recipes. Users can add recipes by providing a title, description, ingredients, and instructions, which are saved in a MongoDB Database. The website features a **Recipes** section where all submitted recipes are displayed, and a **search bar** to filter through recipes in real-time.
 
 ## Features
+- 🔐 **Login**: Users need to register by verifying OTP sent to their email. Only then can they login to their account.
+- ⚙️ **Password Reset**: Registered users can reset their password by verifying the OTP sent to their registered email.
 - 📝 **Add Recipes**: Users can submit new recipes including the title, description, ingredients, and instructions.
-- 🗂️ **Recipe Storage**: Recipes are saved locally in a `.json` file, which stores the recipe details like title, ingredients, and instructions.
-- 🔍 **Search Functionality**: The **My Recipes** section includes a search bar that filters recipes dynamically as you type.
+- 🗂️ **Recipe Storage**: Recipes are stored in MongoDB, which stores the recipe details like title, ingredients, and instructions, user_id, Date and Time.
+- 🤖 **ChatBot**: FlavourBot helps you to ask questions regarding the reicpes and helps you cook.
+- 🔍 **Search Functionality**: The **Recipes** section includes a search bar that filters recipes dynamically as you type.
 - 📱 **Responsive Design**: The website is fully responsive and adjusts to different screen sizes, showing fewer recipe cards per row on smaller devices.
 
 ## Prerequisites
@@ -15,6 +18,10 @@ Last run on these versions
 * MongoSH (v2.3.1)
 * npm (v10.5.2)
 * Node.js (v20.13.1)
+* Express.js (v4.21.0)
+
+**Important**
+* CREATE a `.env file` in the root of the project directory with variables such as `JWT_SECRET` `EMAIL_USER` `EMAIL_PASS` `GEMINI_API_KEY` and assign your credentials to these variable.
 
 ## Technologies Used
 - **HTML5**: Structure and content of the website.
@@ -23,18 +30,30 @@ Last run on these versions
 - **MongoDB**: Storing recipe data in a DataBase using `documents`.
 - **Node.js**: Used to run the backend server.
 - **Express.js**: Used to define API endpoints for creating, reading, updating, and deleting recipes.
+- **Gemini API**: It helps you ask personalised queries regarding the recipes that are available in the database.
 
 ## How it Works
-1. **Recipe Submission**: 
+1. **Login**:
+   - New users can create a new account. **The user must verify the OTP sent to the entered email** to successfully register as a new user.
+   - All passwords are encrypted and stored in MongoDB under a collection called `users`.
+   - Existing users can log in normally. They can also reset their password by **Verifying the OTP sent to their registered email_id**.
+
+2. **Recipe Submission**: 
    - The user submits a recipe via a form that includes fields for the recipe title, description, ingredients, and instructions.
-   - The submitted data is stored in a local `.json` file.
+   - The submitted data is stored in MongoDB as a Document.
    
-2. **My Recipes Section**:
-   - The recipes saved in the `.json` file are displayed on the **My Recipes** page in a card layout.
+3. **Recipes Section**:
+   - The recipes saved in MongoDB are displayed on the **Recipes** page in a card layout.
    - Each card shows the title, description, and a link to the full recipe details.
 
-3. **Search Functionality**:
+4. **Search Functionality**:
    - A search bar on the **My Recipes** page filters the displayed recipes as the user types. It only shows the recipes that match the search query (title).
+
+5. **Chatbot**:
+   - It uses the **Google's Gemini API** to accept any queries regarding the recipes that are available in MongoDB to answer appropriately.
+
+6. **Exporting**:
+   - Stored recipes can be exported as a `.pdf` file using the built in feature.
 
 ## Run
 - Before starting the server we need all the dependecies to run it.
@@ -53,14 +72,19 @@ Last run on these versions
   ```json
   {
       "title": "Pizza",
-      "description": "A baked flatbread topped with tomato sauce, cheese, and various toppings.",
-      "instructions": "Bake the dough at 200°C for 15 minutes, then add the sauce, cheese, and toppings."
+      "description": "Italian Cuisine",
+      "instructions": "Bake Well",
       "ingredients": [
-          "Dough",
-          "Tomato Sauce",
-          "Cheese",
-          "Toppings"
-      ]
+         {
+            "name": "Cheese",
+            "measurement": "Grams (g)",
+            "value": "100",
+            "note": "Mozerella",
+         }
+      ],
+      "userId": "ObjectId('6725ea5de8e37e8fe290ecf1')",
+      "username": "aashishkoundinya",
+      "createdAt": "ISODate('2024-11-02T11:03:31.968Z')",
   }
 
 **Clone the repository:**
